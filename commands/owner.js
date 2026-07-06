@@ -1,11 +1,51 @@
-const settings = require('../settings');
-
 async function ownerCommand(sock, from, msg) {
-    const ownerText = `👤 *BOT OWNER:* ${settings.ownerName}\n` +
-                    `📱 *NUMBER:* +${settings.ownerNumber}\n` +
-                    `🔗 *OFFICIAL WHATSAPP CHANNEL:*\n` +
-                    `> *https://whatsapp.com/channel/0029VbCyoLS2f3EEZIOnuP0p*`;
-    await sock.sendMessage(from, { text: ownerText }, { quoted: msg });
+    // Auto React 👑
+    await sock.sendMessage(from, {
+        react: {
+            text: "👑",
+            key: msg.key
+        }
+    });
+
+    const caption = `
+╭━━━〔 👑 *DARK QUEEN MD OWNER* 👑 〕━━━⬣
+┃
+┃ 👤 *Owner:* DOPE SASA & ZADI
+┃ 🤖 *Bot:* DARK QUEEN MD
+┃ 💻 *Developer:* Sasa Dev
+┃ ⚡ *Status:* Online 24/7
+┃ 🚀 *Version:* Latest
+┃
+┣━━━━━━━━━━━━━━━━━━⬣
+┃✨ *Need Help?*
+┃
+┃• Report Bugs 🐞
+┃• Feature Requests 💡
+┃• Bot Support 🛠️
+┃• Premium Services ⭐
+┃
+┣━━━━━━━━━━━━━━━━━━⬣
+┃⚠️ *Please don't spam the owner.*
+┃📩 Send your message clearly and
+┃wait patiently for a reply.
+┃
+┣━━━━━━━━━━━━━━━━━━⬣
+┃🌐 *Powered By DARK QUEEN MD*
+╰━━━━━━━━━━━━━━━━━━⬣
+`;
+
+    await sock.sendMessage(
+        from,
+        {
+            image: {
+                url: "https://i.ibb.co/YFrKWScZ/fab3b0c64145.jpg"
+            },
+            caption: caption
+        },
+        {
+            quoted: msg
+        }
+    );
 }
 
 module.exports = ownerCommand;
